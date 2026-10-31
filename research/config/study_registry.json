@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_id": "mnd-spj-evolve",
+  "protocol_version": "0.1.0",
+  "status": "DRAFT_NOT_PREREGISTERED",
+  "required_development_branch": "agent-opt",
+  "created_date": "2026-08-24",
+  "primary_journal_target": "npj Digital Medicine",
+  "intended_use": {
+    "summary": "Patient-facing adjunct for structured MND genetic-counselling information, question elicitation, and preparation for discussion with a qualified professional.",
+    "not_intended_for": [
+      "autonomous diagnosis",
+      "individual genetic-risk determination",
+      "personal testing or treatment recommendations",
+      "replacement of a qualified genetic counsellor"
+    ],
+    "population": "TBD_BEFORE_FREEZE",
+    "setting": "TBD_BEFORE_FREEZE",
+    "supervision_model": "TBD_BEFORE_FREEZE",
+    "finalized": false
+  },
+  "claims": [
+    {
+      "id": "C1_EXPERT_PREFERENCE",
+      "endpoint_id": "E_PRIMARY_EXPERT_PREFERENCE",
+      "phase": "expert_validation",
+      "status": "DRAFT"
+    },
+    {
+      "id": "C2_SAFETY",
+      "endpoint_id": "E_SAFETY_CRITICAL_ERROR",
+      "phase": "sealed_test",
+      "status": "DRAFT"
+    },
+    {
+      "id": "C3_GENERALIZATION",
+      "endpoint_id": "E_GENERALIZATION_INTERACTION",
+      "phase": "sealed_test",
+      "status": "DRAFT"
+    },
+    {
+      "id": "C4_JUDGE_VALIDITY",
+      "endpoint_id": "E_JUDGE_AGREEMENT",
+      "phase": "expert_validation",
+      "status": "DRAFT"
+    },
+    {
+      "id": "C5_TARGET_USER",
+      "endpoint_id": "E_USER_PRIMARY_TBD",
+      "phase": "prospective_user",
+      "status": "NOT_DEFINED"
+    }
+  ],
+  "data_zones": [
+    {
+      "id": "existing_repo_vignettes",
+      "role": "development_only",
+      "path_globs": [
+        "vignettes/**/*.txt"
+      ],
+      "developer_visible": true,
+      "may_support_confirmatory_claim": false
+    },
+    {
+      "id": "internal_validation",
+      "role": "model_selection_only",
+      "path_globs": [],
+      "developer_visible": true,
+      "may_support_confirmatory_claim": false
+    },
+    {
+      "id": "sealed_external_test",
+      "role": "confirmatory_once",
+      "path_globs": [],
+      "developer_visible": false,
+      "may_support_confirmatory_claim": true
+    },
+    {
+      "id": "prospective_participant",
+      "role": "confirmatory_registered_protocol",
+      "path_globs": [],
+      "developer_visible": false,
+      "may_support_confirmatory_claim": true
+    }
+  ],
+  "model_roles": {
+    "simulated_patient": {
+      "ids": [
+        "TBD_FOR_EACH_EXPERIMENT"
+      ],
+      "may_select_candidate": false,
+      "may_score_primary_endpoint": false
+    },
+    "optimization_judges": {
+      "ids": [
+        "TBD_FOR_EACH_EXPERIMENT"
+      ],
+      "may_select_candidate": true,
+      "may_score_primary_endpoint": false
+    },
+    "final_llm_evaluators": {
+      "ids": [
+        "TBD_BEFORE_FREEZE"
+      ],
+      "may_select_candidate": false,
+      "may_score_primary_endpoint": false
+    },
+    "human_expert_evaluators": {
+      "ids": [
+        "ACCESS_CONTROLLED_TBD"
+      ],
+      "blinded": true,
+      "may_select_candidate": false,
+      "may_score_primary_endpoint": true
+    }
+  },
+  "optimization": {
+    "mode": "offline_only",
+    "mutable_components_initial": [
+      "mnd_langgraph_agent.background_node_prompt",
+      "mnd_langgraph_agent.education_node_prompt",
+      "mnd_langgraph_agent.questions_node_prompt",
+      "mnd_langgraph_agent.wrap_node_prompt"
+    ],
+    "immutable_components": [
+      "agent_base.clinical_system_prompt_and_safety_rules",
+      "clinical_safety.py",
+      "gene_resolver.py",
+      "knowledge_base/mnd_knowledge.json",
+      "research/config/clinical_safety_policy.json",
+      "research/config/clinical_hazard_log.json",
+      "research/config/critical_errors.json",
+      "rubrics/frozen_final_rubric",
+      "sealed_case_content_and_answer_keys",
+      "confirmatory_statistical_analysis_plan"
+    ],
+    "online_or_participant_learning_allowed": false,
+    "candidate_selection_data_roles": [
+      "development_only",
+      "model_selection_only"
+    ]
+  },
+  "primary_endpoint": {
+    "id": "E_PRIMARY_EXPERT_PREFERENCE",
+    "name": "Blinded clinical-expert pairwise preference",
+    "unit": "complete_transcript_case_rating",
+    "comparator": "frozen_current_agent",
+    "estimand": "system effect on probability of expert preference",
+    "minimum_clinically_important_effect": null,
+    "analysis_model": "TBD_BEFORE_FREEZE"
+  },
+  "safety_endpoint": {
+    "id": "E_SAFETY_CRITICAL_ERROR",
+    "unit": "complete_conversation",
+    "event": "one_or_more_adjudicated_critical_errors",
+    "criterion_type": "TBD_BEFORE_FREEZE",
+    "noninferiority_or_maximum_risk_margin": null,
+    "hard_gate": true
+  },
+  "prospective_endpoint": {
+    "id": "E_USER_PRIMARY_TBD",
+    "instrument": "TBD_BEFORE_FREEZE",
+    "assessment_time": "TBD_BEFORE_FREEZE",
+    "minimum_clinically_important_effect": null
+  },
+  "confirmatory_requirements": {
+    "allowed_protocol_statuses": [
+      "FROZEN_PREREGISTERED"
+    ],
+    "require_clean_git_worktree": true,
+    "require_exact_commit": true,
+    "require_case_set_sha256": true,
+    "require_prompt_sha256": true,
+    "require_knowledge_sha256": true,
+    "require_distinct_optimization_and_final_judges": true,
+    "require_external_case_governance": true,
+    "require_signed_sap": true,
+    "require_ethics_and_registration_for_prospective_user": true
+  },
+  "reporting_standards": [
+    "TRIPOD-LLM",
+    "Nature Portfolio reporting summary",
+    "SPIRIT-AI when applicable",
+    "CONSORT 2025 and CONSORT-AI when applicable",
+    "DECIDE-AI when applicable",
+    "STROBE when applicable"
+  ]
+}

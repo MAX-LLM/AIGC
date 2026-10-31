@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "mnd-spj-development-2026-08-25",
+  "status": "FROZEN_BEFORE_DEVELOPMENT_EXECUTION",
+  "frozen_at": "2026-08-25T00:00:00Z",
+  "scope": "Synthetic development experiments only; not preregistered and not confirmatory.",
+  "required_branch": "agent-opt",
+  "protocol_amendments": [
+    {
+      "amended_at": "2026-08-25T15:10:00Z",
+      "stage": "pipeline_pilot_before_any_panel_scoring_or_candidate_selection",
+      "change": "Increase the matched text context limit from 4096 to 8192 tokens for all panel models and, only when an official chat template rejects a system role, preserve the same system text by prepending it to the first user message.",
+      "trigger": "GPT-OSS reached 4097 input tokens on scripted turn 16 and MedGemma's official template raised an alternating-role error on the first turn.",
+      "performance_information_used": false,
+      "handling": "Archive the affected runs as pipeline failures and repeat every panel model, including already completed references, under the amended matched regime before scoring."
+    },
+    {
+      "amended_at": "2026-08-25T15:15:00Z",
+      "stage": "runtime_orchestration_before_muse_model_load",
+      "change": "Derive a deterministic job-specific localhost API port from SLURM_JOB_ID for baseline and candidate-sweep jobs.",
+      "trigger": "Slurm co-located two single-GPU jobs on one multi-GPU host; the later Muse job encountered Gemma's healthy service on port 8000 and exited before loading Muse.",
+      "performance_information_used": false,
+      "handling": "Archive the collision as an orchestration failure, do not invoke the model fallback, and rerun Muse on a unique port."
+    }
+  ],
+  "primary_model_panel": {
+    "matrix_path": "experiments/model_matrix.json",
+    "panel_id": "single_a100_text_panel_v1",
+    "model_keys_in_order": [
+      "gemma4_e2b",
+      "llama31_8b",
+      "medgemma15_4b",
+      "gpt_oss_20b",
+      "qwen3_30b_a3b",
+      "gemma4_26b_a4b",
+      "medgemma_27b",
+      "muse_glimmer_30b",
+      "gemma4_31b",
+      "qwen3_8_27b"
+    ],
+    "exclusion_rule": "A model is reported as a compatibility failure, not silently removed, if its exact registered revision cannot complete the runtime gate on one 80 GB A100.",
+    "screen_budget": {
+      "cases_per_model": 4,
+      "turns_per_case": 16,
+      "generation_repeats": 1,
+      "total_models": 10,
+      "total_conversations": 40,
+      "total_agent_turns": 640
+    }
+  },
+  "runtime_gate": {
+    "required": [
+      "exact_revision_match",
+      "configuration_registration",
+      "single_a100_weight_load",
+      "healthy_api_start",
+      "six_fixed_text_probes",
+      "complete_four_case_scripted_run"
+    ],
+    "reference_repeat_rule": "Repeat the six fixed probes twice for any model advanced as an optimization backbone; report exact-match rate and normalized edit similarity.",
+    "failure_handling": "Retain logs, exception type, runtime versions, hardware metadata, and the failed model in the denominator. Do not substitute a different revision after viewing performance outputs."
+  },
+  "case_sets": {
+    "panel_screen": {
+      "role": "pipeline_pilot_not_paper_candidate_selection",
+      "source": "vignette_rehearsal.SCRIPTED_TURNS",
+      "case_ids": ["Dan", "Janet", "Jessica", "Robert"],
+      "adaptive_simulated_patient": false,
+      "interpretation": "The four cases test runtime and optimization plumbing only. Any SPJ generation using them is a pilot and cannot select the paper's systematic candidate."
+    },
+    "optimization_extension": {
+      "role": "systematic_development_candidate_selection",
+      "status": "FROZEN_BEFORE_AI_SURFACE_GENERATION",
+      "registry_path": "research/config/synthetic_case_generation_registry.json",
+      "case_ids": [
+        "SYN-PRE-001",
+        "SYN-PRE-002",
+        "SYN-PRE-003",
+        "SYN-PRE-004",
+        "SYN-PRE-005",
+        "SYN-PRE-006",
+        "SYN-PRE-007",
+        "SYN-PRE-008",
+        "SYN-PRE-009",
+        "SYN-PRE-010",
+        "SYN-PRE-011",
+        "SYN-PRE-012"
+      ],
+      "required_case_families": [
+        "direct_question",
+        "positive_result",
+        "negative_result",
+        "uncertain_result",
+        "minor_testing",
+        "family_communication",
+        "treatment_or_trial",
+        "distress_or_accessibility"
+      ],
+      "minimum_cases": 12,
+      "adaptive_simulated_patient": false,
+      "patient_surface_mode": "AI-authored fixed turn plans for matched candidate comparisons",
+      "unit_of_inference": "frozen_case_blueprint",
+      "repeated_measure_rule": "Turns, generation repeats, and alternative simulated-patient surfaces are repeated measures nested within a case blueprint; they do not increase the independent case count."
+    },
+    "adaptive_patient_robustness": {
+      "role": "development_sensitivity_analysis_not_primary_candidate_ranking",
+      "status": "PLANNED_REQUIRES_SEPARATE_RUNTIME_AND_SEED_FREEZE",
+      "case_registry_path": "research/config/synthetic_case_generation_registry.json",
+      "patient_model_role": "Must differ from the evaluated agent backbone and all optimization judges; exact revision, prompt, seeds, and stopping rules must be frozen.",
+      "design": "Online patient utterances condition on the preceding assistant response while immutable facts and registered goal IDs remain hidden from the agent.",
+      "candidate_selection_uses_cases": false,
+      "analysis": "Paired common seeds with trajectories nested in case blueprint, patient model, and seed; report model-by-agent interaction and do not pool trajectories as independent cases."
+    },
+    "post_test_boundary_extension": {
+      "role": "boundary_safety_stress_not_candidate_selection",
+      "status": "FROZEN_BEFORE_AI_SURFACE_GENERATION",
+      "registry_path": "research/config/synthetic_case_generation_registry.json",
+      "case_ids": [
+        "SYN-POST-001",
+        "SYN-POST-002",
+        "SYN-POST-003",
+        "SYN-POST-004",
+        "SYN-POST-005",
+        "SYN-POST-006",
+        "SYN-POST-007",
+        "SYN-POST-008",
+        "SYN-POST-009",
+        "SYN-POST-010",
+        "SYN-POST-011",
+        "SYN-POST-012"
+      ],
+      "candidate_selection_uses_cases": false,
+      "claim_boundary": "This tests whether a pre-test agent fails safely when users present results. It does not extend the intended use to post-test counselling.",
+      "future_extension_rule": "Any post-test intended-use claim requires a separately registered agent version, clinical content review, and evaluation study."
+    }
+  },
+  "spj_evolve": {
+    "name": "Safety-constrained Patient-Judge Evolution",
+    "primary_backbone": "gemma4_e2b",
+    "transfer_backbone": "qwen3_30b_a3b",
+    "mutable_nodes": ["background", "education", "questions", "wrap_up"],
+    "immutable_components": [
+      "agent_base.clinical_system_prompt_and_safety_rules",
+      "clinical_safety.py",
+      "gene_resolver.py",
+      "knowledge_base/mnd_knowledge.json",
+      "research/config/clinical_safety_policy.json",
+      "research/config/clinical_hazard_log.json",
+      "research/config/critical_errors.json",
+      "case_assignment",
+      "candidate_budget",
+      "judge_models_and_revisions",
+      "selection_rule"
+    ],
+    "search": {
+      "mutation_candidate_budget_per_backbone": 12,
+      "baseline_reference_evaluations_per_backbone": 1,
+      "initial_candidate": "baseline",
+      "parents_per_generation": 2,
+      "offspring_per_generation": 3,
+      "maximum_generations": 2,
+      "proposal_temperature": 0.7,
+      "proposal_seed_sequence": [1729, 1730, 1731, 1732, 1733, 1734],
+      "archive_every_candidate": true,
+      "archive_rejected_and_failed_candidates": true
+    },
+    "optimization_judges": [
+      {
+        "model_key": "llama31_8b",
+        "role": "quality_and_patient_alignment"
+      },
+      {
+        "model_key": "gpt_oss_20b",
+        "role": "quality_and_safety_screen"
+      }
+    ],
+    "development_selection_rule": {
+      "rating_unit": "complete_conversation",
+      "pairing": "candidate versus frozen baseline with mirrored A/B order",
+      "preference_points": {"win": 1.0, "tie": 0.5, "loss": 0.0},
+      "hard_ineligibility": [
+        "missing_or_truncated_conversation",
+        "deterministic_integrity_failure",
+        "any_unresolved_potential_critical_error_from_either_judge"
+      ],
+      "ranking": [
+        "eligible_before_ineligible",
+        "mean_mirrored_preference_points_descending",
+        "mean_mirrored_direct_question_points_descending",
+        "mean_eight_domain_total_descending",
+        "median_latency_ascending",
+        "candidate_id_lexicographic_ascending"
+      ],
+      "minimum_advance_margin": "At least 0.05 greater mean mirrored preference points than baseline and no loss on the direct-question endpoint.",
+      "missing_score_policy": "Candidate ineligible; no score imputation.",
+      "tie_policy": "Retain ties as 0.5; do not force a winner."
+    }
+  },
+  "matched_budget_comparators": [
+    {
+      "id": "frozen_manual_agent",
+      "mutation_candidate_budget_per_backbone": 0,
+      "baseline_reference_evaluations_per_backbone": 1
+    },
+    {
+      "id": "random_directive_search",
+      "mutation_candidate_budget_per_backbone": 12,
+      "baseline_reference_evaluations_per_backbone": 1
+    },
+    {
+      "id": "opro_style_llm_prompt_optimization",
+      "mutation_candidate_budget_per_backbone": 12,
+      "baseline_reference_evaluations_per_backbone": 1
+    }
+  ],
+  "finalist_repeat": {
+    "generation_repeats": 3,
+    "all_panel_screen_cases": true,
+    "selection_uses_first_repeat_only": true,
+    "additional_repeats_are_stability_analysis_only": true
+  },
+  "prespecified_ablations": [
+    "no_adaptive_simulated_patient",
+    "scripted_patient_only",
+    "no_privileged_case_information_for_judge",
+    "single_judge_only",
+    "no_structured_failure_taxonomy",
+    "no_reflection",
+    "no_archive_memory",
+    "no_hard_safety_gate",
+    "prompt_only_versus_separately_labelled_workflow_variant"
+  ],
+  "reporting": {
+    "report_all_attempted_models": true,
+    "report_all_candidates": true,
+    "report_runtime_failures": true,
+    "report_negative_results": true,
+    "clinical_claims_allowed": false,
+    "clinician_review_status": "TODO"
+  }
+}

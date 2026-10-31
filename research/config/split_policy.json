@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "0.1.0",
+  "status": "DRAFT_NOT_FROZEN",
+  "assignment_unit": "case_family",
+  "prohibited_assignment_units": [
+    "individual_turn",
+    "individual_response",
+    "random_near_duplicate_case"
+  ],
+  "case_family_keys": [
+    "counselling_stage",
+    "genetic_result_context",
+    "inheritance_or_family_pattern",
+    "decision_theme",
+    "safety_theme",
+    "direct_question_intent"
+  ],
+  "stratification_dimensions": [
+    "health_literacy",
+    "communication_style",
+    "accessibility_need",
+    "emotional_state",
+    "conversation_length",
+    "family_role"
+  ],
+  "assignments": {
+    "development": {
+      "allowed_roles": [
+        "development_only"
+      ],
+      "developer_visible": true,
+      "optimization_queries_allowed": true
+    },
+    "internal_validation": {
+      "allowed_roles": [
+        "model_selection_only"
+      ],
+      "developer_visible": true,
+      "optimization_queries_allowed": false,
+      "selection_queries_limited": true
+    },
+    "sealed_test": {
+      "allowed_roles": [
+        "confirmatory_once"
+      ],
+      "developer_visible": false,
+      "optimization_queries_allowed": false,
+      "model_selection_allowed": false,
+      "openings_allowed": 1
+    },
+    "prospective_user": {
+      "allowed_roles": [
+        "confirmatory_registered_protocol"
+      ],
+      "developer_visible": false,
+      "optimization_queries_allowed": false,
+      "model_selection_allowed": false
+    }
+  },
+  "existing_assets": [
+    {
+      "path_glob": "vignettes/**/*.txt",
+      "forced_assignment": "development",
+      "reason": "Visible to developers before protocol and split freeze."
+    },
+    {
+      "path_glob": "rubrics/rubric_v1.txt",
+      "forced_assignment": "development",
+      "reason": "Used by the existing optimization/development judge."
+    },
+    {
+      "path_glob": "judge_outputs/**",
+      "forced_assignment": "development",
+      "reason": "Historical development results."
+    }
+  ],
+  "leakage_checks_required_before_freeze": [
+    "exact_content_hash_deduplication",
+    "normalized_text_deduplication",
+    "semantic_near_duplicate_review",
+    "case_family_overlap_review",
+    "developer_access_audit",
+    "source_and_author_independence_review"
+  ],
+  "sealed_sets": []
+}

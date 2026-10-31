@@ -1,0 +1,106 @@
+{
+  "version": "2026-06-14",
+  "scope": "Curated reference summaries for an MND genetics pre-test counselling research prototype.",
+  "entries": [
+    {
+      "id": "als-genetic-testing-consensus",
+      "title": "Evidence-based consensus guidelines for ALS genetic testing and counseling",
+      "publisher": "Annals of Clinical and Translational Neurology",
+      "year": 2023,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10646996/",
+      "topics": ["MND genetics", "ALS genetics", "genetic testing", "gene panel", "C9ORF72", "SOD1", "FUS", "TARDBP"],
+      "keywords": ["who should be tested", "offer testing", "panel", "repeat expansion", "sequencing"],
+      "summary": "The consensus group recommends offering genetic testing to all people with ALS, with genetic counselling and education. Its minimum panel recommendations include C9ORF72, SOD1, FUS, and TARDBP, plus other genes with definitive evidence. C9ORF72 repeat-expansion analysis requires an appropriate assay and is not equivalent to ordinary sequence analysis."
+    },
+    {
+      "id": "als-pretest-counselling",
+      "title": "Pre-test genetic counselling recommendations in ALS",
+      "publisher": "Annals of Clinical and Translational Neurology",
+      "year": 2023,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10646996/",
+      "topics": ["genetic counselling", "MND-specific genetic counselling", "pre-test counselling", "family history", "informed decision"],
+      "keywords": ["pedigree", "three generation", "penetrance", "inheritance", "psychological", "financial", "insurance", "consent"],
+      "summary": "Pre-test counselling should take place before testing. It should review a three-generation family history, explain genetic heterogeneity, inheritance and incomplete penetrance, discuss possible positive, negative and uncertain outcomes, and consider personal, family, psychological and practical effects. Testing remains the person's choice."
+    },
+    {
+      "id": "als-results-counselling",
+      "title": "Post-test genetic counselling recommendations in ALS",
+      "publisher": "Annals of Clinical and Translational Neurology",
+      "year": 2023,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10646996/",
+      "topics": ["genetic counselling", "test results", "positive result", "negative result", "uncertain result", "VUS", "family risk"],
+      "keywords": ["pathogenic", "likely pathogenic", "variant of uncertain significance", "reanalysis", "reinterpretation", "predictive testing"],
+      "summary": "Post-test counselling is recommended for all result types. A pathogenic result may explain a genetic contribution but often cannot predict an individual's exact course. A negative result does not exclude every genetic contribution. A variant of uncertain significance should not be treated as a confirmed cause and may be reclassified as evidence changes. Relatives should receive specialist counselling before predictive testing."
+    },
+    {
+      "id": "genereviews-als-overview",
+      "title": "Amyotrophic Lateral Sclerosis Overview",
+      "publisher": "GeneReviews, NCBI Bookshelf",
+      "year": 2023,
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK1450/",
+      "topics": ["MND", "ALS", "MND genetics", "inheritance", "family history", "gene information"],
+      "keywords": ["familial", "sporadic", "simplex", "autosomal dominant", "autosomal recessive", "x-linked", "penetrance"],
+      "summary": "GeneReviews provides a clinician-reviewed overview of ALS, genetic causes, inheritance patterns, testing approaches and family implications. A person can have a genetic cause without an obvious family history because families may be small, diagnoses may differ, information may be unavailable, or a variant may have reduced penetrance or be new in that person."
+    },
+    {
+      "id": "mnda-inherited-mnd",
+      "title": "Inherited MND and genetic testing",
+      "publisher": "Motor Neurone Disease Association",
+      "year": 2024,
+      "url": "https://www.mndassociation.org/sites/default/files/2024-04/Inherited-MND-and-genetic-testing.pdf",
+      "topics": ["MND", "MND genetics", "genetic testing", "patient information", "family communication"],
+      "keywords": ["inherited MND", "familial MND", "children", "relatives", "blood test", "saliva", "genetic counsellor"],
+      "summary": "This UK patient information resource explains inherited MND, why testing may be discussed, possible implications for relatives, and the role of specialist genetic counselling. It is suitable as a plain-language companion to a clinical appointment, but individual decisions and result interpretation belong with the neurology or genetics team."
+    },
+    {
+      "id": "mnda-genetic-testing-faq",
+      "title": "Frequently asked questions about genetic testing",
+      "publisher": "Motor Neurone Disease Association",
+      "year": 2023,
+      "url": "https://www.mndassociation.org/sites/default/files/2023-05/FAQs-Genetic-testing-April-2023.pdf",
+      "topics": ["MND-specific genetic counselling", "genetic testing", "patient questions", "test process", "family implications"],
+      "keywords": ["how testing works", "sample", "waiting time", "results", "family", "decision"],
+      "summary": "This MND-specific FAQ addresses practical questions people commonly raise about genetic testing and family implications. Processes, eligibility and waiting times can vary by service, so local details should be checked with the person's clinical team."
+    },
+    {
+      "id": "mnda-genetic-counselling",
+      "title": "Inherited MND and genetic counselling",
+      "publisher": "Motor Neurone Disease Association",
+      "year": 2022,
+      "url": "https://www.mndassociation.org/sites/default/files/2022-11/11%20Inherited%20MND%20and%20genetic%20counselling.pdf",
+      "topics": ["MND-specific genetic counselling", "genetic counselling", "family communication", "predictive testing"],
+      "keywords": ["appointment", "choice", "relatives", "risk", "support", "decision making"],
+      "summary": "This UK information sheet describes how genetic counselling can help a person explore testing, possible results, family implications and their own preferences. Counselling supports an informed choice; it is not intended to direct a person toward or away from testing."
+    },
+    {
+      "id": "acmg-variant-interpretation",
+      "title": "Standards and guidelines for the interpretation of sequence variants",
+      "publisher": "American College of Medical Genetics and Genomics and Association for Molecular Pathology",
+      "year": 2015,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4544753/",
+      "topics": ["variant interpretation", "genetic testing", "VUS", "pathogenic variant", "laboratory reporting"],
+      "keywords": ["benign", "likely benign", "uncertain significance", "likely pathogenic", "classification"],
+      "summary": "This standard defines the widely used five-tier sequence-variant classification framework: pathogenic, likely pathogenic, uncertain significance, likely benign and benign. A VUS is an inconclusive finding and should not be presented as a confirmed diagnosis or used alone for predictive testing decisions."
+    },
+    {
+      "id": "nice-mnd-care",
+      "title": "Motor neurone disease: assessment and management (NG42)",
+      "publisher": "National Institute for Health and Care Excellence",
+      "year": 2016,
+      "url": "https://www.nice.org.uk/guidance/ng42",
+      "topics": ["MND", "clinical care", "multidisciplinary care", "communication", "support"],
+      "keywords": ["neurology", "multidisciplinary team", "information", "decision support", "care"],
+      "summary": "NICE NG42 covers assessment and multidisciplinary management of MND in the UK. It supports coordinated, person-centred information and care. It is a general MND care guideline rather than a substitute for specialist genetics guidance."
+    },
+    {
+      "id": "nice-shared-decision-making",
+      "title": "Shared decision making (NG197)",
+      "publisher": "National Institute for Health and Care Excellence",
+      "year": 2021,
+      "url": "https://www.nice.org.uk/guidance/ng197",
+      "topics": ["genetic counselling", "shared decision making", "informed choice", "patient preferences"],
+      "keywords": ["benefits", "risks", "options", "values", "preferences", "decision aid"],
+      "summary": "NICE recommends making decisions collaboratively, discussing options and their benefits, risks and consequences, and supporting people to consider what matters to them. This is relevant to preference-sensitive choices such as genetic testing."
+    }
+  ]
+}
